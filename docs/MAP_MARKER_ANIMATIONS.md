@@ -116,9 +116,18 @@ The map includes a dedicated keyframe animation for animated markers.
 
 ```css
 @keyframes markerPulse {
-  0%   { transform: scale(1); opacity: 1; }
-  70%  { transform: scale(1.6); opacity: 0; }
-  100% { transform: scale(1.6); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
 }
 ```
 
