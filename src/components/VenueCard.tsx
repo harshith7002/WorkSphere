@@ -87,6 +87,7 @@ export function VenueCard({
   const [isLoading, setIsLoading] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
   const [showFolderModal, setShowFolderModal] = useState(false);
+  const [enableTransition, setEnableTransition] = useState(false);
 
   // =========================================================================
   // COMMUNITY VERIFICATION VOTE STATE TRACKING SYSTEM
@@ -202,6 +203,11 @@ export function VenueCard({
     }
     loadVoteMetrics();
   }, [venue.id]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setEnableTransition(true), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Async dynamic vote submittal query processor
   const submitAmenityVote = async (
@@ -454,13 +460,19 @@ export function VenueCard({
           <button
             onClick={handleFavorite}
             disabled={isSavingFavorite}
-            className={`p-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
+            className={`p-2 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed ${
+              enableTransition ? "transition-colors duration-300" : ""
+            } ${
               isFavorited
                 ? "bg-red-100 dark:bg-red-900/20 text-red-600"
                 : "hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-400"
             }`}
           >
-            <Heart className={`w-5 h-5 ${isFavorited ? "fill-current" : ""}`} />
+            <Heart
+              className={`w-5 h-5 ${
+                enableTransition ? "transition-all duration-300" : ""
+              } ${isFavorited ? "fill-current" : ""}`}
+            />
           </button>
         </div>
 
