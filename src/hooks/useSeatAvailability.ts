@@ -66,11 +66,6 @@ export function useSeatAvailability() {
   // renders without needing checkedInVenueId itself as a dependency.
   const checkedInVenueRef = useRef<string | null>(null);
 
-  const [isMounted, setIsMounted] = useState(false);
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   useEffect(() => {
     getToken()
       .then(setToken)
@@ -79,7 +74,7 @@ export function useSeatAvailability() {
 
   const socket = usePartySocket({
     host: "127.0.0.1:1999",
-    room: isMounted ? SEAT_ROOM : null,
+    room: isMounted ? SEAT_ROOM : undefined,
     query: token ? { token } : undefined,
     onOpen() {
       setIsConnected(true);

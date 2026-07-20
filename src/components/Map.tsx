@@ -278,7 +278,9 @@ function WebGLContextWatcher() {
   const map = useMap();
 
   useEffect(() => {
+    if (!map || typeof map.getContainer !== "function") return;
     const container = map.getContainer();
+    if (!container) return;
     const cleanups: Array<() => void> = [];
 
     const setupCanvases = () => {
@@ -917,19 +919,6 @@ const Map = ({
             <Popup>You are here!</Popup>
           </Marker>
         )}
-        <MapEvents onMouseMove={throttledBroadcast} />
-        {Object.entries(mapCursors).map(([userId, cursor]) => {
-          const presenceIcon = createCursorIcon(cursor.avatar, cursor.name);
-          if (!presenceIcon) return null;
-          return (
-            <Marker
-              key={`presence-${userId}`}
-              position={[cursor.lat, cursor.lng]}
-              icon={presenceIcon}
-              interactive={false}
-            />
-          );
-        })}
         {spiderfiedMarkers.map((marker) => (
           <Marker
             key={marker.id}

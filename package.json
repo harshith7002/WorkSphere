@@ -17,7 +17,6 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^7.5.20",
-
     "@pdf-lib/fontkit": "^1.1.1",
     "@prisma/adapter-pg": "^7.8.0",
     "@prisma/client": "^7.8.0",
@@ -56,7 +55,7 @@
     "react-joyride": "^3.2.0",
     "react-leaflet": "^5.0.0",
     "recharts": "^3.9.2",
-    "snarkjs": "^0.7.5",
+    "snarkjs": "^0.7.6",
     "svix": "^1.96.1",
     "tailwind-merge": "^3.6.0",
     "tesseract.js": "^7.0.0",

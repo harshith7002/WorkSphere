@@ -120,7 +120,7 @@ export default function FolderDetailsPage({
   // Real-time synchronization
   usePartySocket({
     host: "127.0.0.1:1999",
-    room: isMounted ? `folder-${id}` : null,
+    room: isMounted ? `folder-${id}` : undefined,
     onMessage(event) {
       try {
         const data = JSON.parse(event.data);
